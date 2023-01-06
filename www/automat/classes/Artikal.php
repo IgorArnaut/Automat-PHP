@@ -59,30 +59,4 @@ class Artikal
     {
         return $this->kolicina = $kolicina;
     }
-
-    // Vraca html element
-    public function get_html()
-    {
-        $html = "";
-        $html .= "<td>";
-
-        if (isset($this->sifra) && isset($this->naziv) && isset($this->cena) && isset($this->kolicina)) {
-            if ($this->kolicina > 0) {
-                $html .= "<img src=\"images/" . str_replace(" ", "-", $this->naziv) . ".jpg\" width=\"100\">";
-                $html .= "<br>";
-                $html .= "{$this->sifra} | {$this->cena} DIN";
-            } else {
-                $html .= "<img src=\"images/none.png\" style=\"background-color: white;\" width=\"100\">";
-                $html .= "<br>";
-                $html .= "{$this->sifra} | {$this->cena} DIN";
-            }
-        } else {
-            $html .= "<img src=\"images/none.jpg\" style=\"background-color: white;\" width=\"100\">";
-            $html .= "<br>";
-            $html .= "X | X";
-        }
-
-        $html .= "</td>";
-        return $html;
-    }
 }
