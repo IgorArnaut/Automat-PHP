@@ -3,33 +3,26 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 02, 2023 at 01:51 PM
+-- Generation Time: Jan 06, 2023 at 10:18 PM
 -- Server version: 8.0.31
 -- PHP Version: 8.2.0
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
-
-
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
-
 --
 -- Database: `automat`
 --
+DROP DATABASE IF EXISTS `automat`;
 CREATE DATABASE IF NOT EXISTS `automat` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
 USE `automat`;
-
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `artikli`
 --
-
-DROP TABLE IF EXISTS `artikli`;
 CREATE TABLE IF NOT EXISTS `artikli` (
   `sifra` int NOT NULL,
   `naziv` varchar(50) NOT NULL,
@@ -37,11 +30,9 @@ CREATE TABLE IF NOT EXISTS `artikli` (
   `kolicina` int NOT NULL,
   PRIMARY KEY (`sifra`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 --
 -- Dumping data for table `artikli`
 --
-
 INSERT INTO `artikli` (`sifra`, `naziv`, `cena`, `kolicina`) VALUES
 (66, 'bravo sunny orange mango', 100, 10),
 (65, 'pepsi limenka', 100, 10),
@@ -98,7 +89,6 @@ INSERT INTO `artikli` (`sifra`, `naziv`, `cena`, `kolicina`) VALUES
 (68, 'ultra energy original limenka', 100, 10),
 (69, 'ultra energy original limenka', 100, 10);
 COMMIT;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
