@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 -- Database: `automat`
 --
 DROP DATABASE IF EXISTS `automat`;
-CREATE DATABASE IF NOT EXISTS `automat` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+CREATE DATABASE IF NOT EXISTS `automat` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE `automat`;
 -- --------------------------------------------------------
 --
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `artikli` (
   `cena` int NOT NULL,
   `kolicina` int NOT NULL,
   PRIMARY KEY (`sifra`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 --
 -- Dumping data for table `artikli`
 --
