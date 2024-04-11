@@ -1,38 +1,42 @@
 <?php
-// Nakon prijave otvara stranicu za podesavanje automata
-function login()
+// Checks if user credentials are valid
+function check_user($username, $password)
 {
-    $username = $_POST["user"];
-    $password = $_POST["pass"];
-
-    // Redirektuje ka stranici za podesavanja, inace obavestava korisnika o gresci
     if ($username == "admin" && $password == "admin")
         header("Location: " . "settings.php");
     else if ($username == "admin" && $password != "admin")
-        echo "<script>alert(\"Pogresna lozinka!\");</script>";
+        echo "<script>alert(\"Wrong password!\");</script>";
     else
-        echo "<script>alert(\"Pogresno korisnicko ime!\");</script>";
+        echo "<script>alert(\"Wrong username!\");</script>";
 }
 
-// Poziva login ako su postoje vrednosti u kljucevima "user" i "pass"
-if (isset($_POST["user"]) && isset($_POST["pass"]))
-    login();
+// Redirects to settings page after logging in
+function login()
+{
+    if (isset($_POST["user"]) && isset($_POST["pass"])) {
+        $username = $_POST["user"];
+        $password = $_POST["pass"];
+        check_user($username, $password);
+    }
+}
+
+login();
 ?>
 
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>PRIJAVA</title>
+    <title>LOG IN</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
-    <h1>PRIJAVA</h1>
+    <h1>LOG IN</h1>
 
     <form action="" method="post">
-        <p>Korisničko ime <input type="text" name="user" required></p>
-        <p>Lozinka <input type="password" name="pass" required></p>
+        <p>Username <input type="text" name="user" required></p>
+        <p>Password <input type="password" name="pass" required></p>
         <p><input type="submit" value="Prijavi se"></p>
     </form>
 </body>

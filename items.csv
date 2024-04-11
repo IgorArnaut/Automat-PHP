@@ -1,0 +1,55 @@
+id,name,price,amount,image
+11,choco biscuit,60,10,https://www.swisslion-takovo.com/wp-content/uploads/2017/12/Choco-Biscuit-35g-2.jpg
+12,eurocrem blok,60,10,https://www.swisslion-takovo.com/wp-content/uploads/2017/12/Eurocrem-Blok-100g-2.jpg
+13,eurovafel choco,60,10,https://www.swisslion-takovo.com/wp-content/uploads/2017/12/eurovafel-choco-4-45g.jpg
+14,gud kikiriki,60,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/kikiriki-marbo-gud-przeni-slani-40g-655514d2cd511.jpeg
+15,orbit spearmint,70,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/zvake-orbit-spearmint-14g-65551aae94912.jpeg
+16,mars,80,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/cokoladica-mars-51g-6555369f4f262.jpeg
+17,twix,80,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/cokoladica-twix-50g-655536ab3162d.jpeg
+18,snickers,80,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/cokoladica-snickers-50g-655536a410491.jpeg
+19,bananica,60,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2024/02/cokoladica-stark-bananica-25g-65e0bff1c8acc.jpeg
+21,kidy mlecna,60,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/cokoladica-pionir-kidy-mlecna-30g-655512fd1d5ec.jpeg
+22,kidy jagoda,60,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/cokoladica-pionir-kidy-jagoda-jogurt-30g-655512f3be6cb.jpeg
+23,jaffa brownie choco,60,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/jaffa-kolaci-brownie-choco-75g-6555837513d69.jpeg
+24,gud kikiriki,60,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/kikiriki-marbo-gud-przeni-slani-40g-655514d2cd511.jpeg
+25,sweeet lesnik,60,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/cokoladica-stark-sweeet-lesnik-38g-655513a37358e.jpeg
+26,7 days kakao,70,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/kroasan-7-days-kakao-60g-6555152620abe.jpeg
+27,7 days cake bar cream,60,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/biskvit-7-days-cake-bar-cream-32g-655539c75c7ea.jpeg
+28,jaffa orange choco,60,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/jaffa-kolaci-orange-choco-77g-65558376b8c31.jpeg
+29,jaffa brownie choco,60,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/jaffa-kolaci-brownie-choco-75g-6555837513d69.jpeg
+31,gud kikiriki,60,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/kikiriki-marbo-gud-przeni-slani-40g-655514d2cd511.jpeg
+32,jumbo student mix,90,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/grickalice-jumbo-studentski-mix-75g-65558e07cbea8.jpeg
+33,jumbo protein mix,90,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/grickalice-jumbo-protein-mix-75g-65559d4b1ca44.jpeg
+34,pardon stapici original,60,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/stapici-marbo-pardon-40g-6555193826b11.jpeg
+35,jaffa brownie choco,90,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/jaffa-kolaci-brownie-choco-75g-6555837513d69.jpeg
+36,jaffa brownie choco,90,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/jaffa-kolaci-brownie-choco-75g-6555837513d69.jpeg
+37,pardon stapici kikiriki,100,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/stapici-marbo-pardon-sa-kikirikijem-40g-65559efa4132e.jpeg
+38,7 days kakao,70,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/kroasan-7-days-kakao-60g-6555152620abe.jpeg
+39,7 days kakao,70,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/kroasan-7-days-kakao-60g-6555152620abe.jpeg
+41,aqua viva,60,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/negazirana-voda-aqua-viva-500ml-65550ce508d98.jpeg
+42,aqua viva,60,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/negazirana-voda-aqua-viva-500ml-65550ce508d98.jpeg
+43,aqua viva,60,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/negazirana-voda-aqua-viva-500ml-65550ce508d98.jpeg
+44,aqua viva,60,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/negazirana-voda-aqua-viva-500ml-65550ce508d98.jpeg
+45,aqua viva,60,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/negazirana-voda-aqua-viva-500ml-65550ce508d98.jpeg
+46,aqua viva,60,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/negazirana-voda-aqua-viva-500ml-65550ce508d98.jpeg
+47,aqua viva,60,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/negazirana-voda-aqua-viva-500ml-65550ce508d98.jpeg
+48,knjaz milos,60,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2024/02/gazirana-voda-knjaz-milos-500ml-65d75cb67e599.png
+49,knjaz milos,60,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2024/02/gazirana-voda-knjaz-milos-500ml-65d75cb67e599.png
+51,coca cola,100,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/coca-cola-500ml-655536e37f975.jpeg
+52,coca cola,100,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/coca-cola-500ml-655536e37f975.jpeg
+53,sinalco cola,70,10,https://e-baa.com/images/images/01A-3906281390137.png
+54,sinalco orange,70,10,https://e-baa.com/images/images/01A-3906281390144.png
+55,sinalco lemon,70,10,https://e-baa.com/images/images/01A-3906281390151.png
+56,sprite lemon,100,10,hhttps://api.cenoteka.rs/uploads/cache/product_large/uploads/2024/02/sprite-500ml-65d7660cea6e6.jpeg
+57,bravo sunny orange,90,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/vocni-sok-rauch-bravo-sunny-orange-500ml-65550ec4cfefe.jpeg
+58,next joy zova,100,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/vocni-sok-next-joy-zova-500ml-65550e9dd0b10.jpeg
+59,schweppes bitter lemon,100,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/schweppes-bitter-lemon-500ml-65550abac4c5c.jpeg
+61,fruvita narandza,100,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2024/02/vocni-sok-fruvita-100-pomorandza-750ml-65d8ac26b086f.png
+62,fruvita jabuke limeta,100,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/vocni-sok-fruvita-premium-jabuka-limeta-750ml-6555816d6a4a8.jpeg
+63,fanta pomorandza limenka,100,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2024/02/fanta-pomorandza-limenka-330ml-65d761c103f22.png
+64,coca cola limenka,100,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/coca-cola-limenka-330ml-655536e597996.jpeg
+65,pepsi limenka,100,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2024/02/pepsi-limenka-330ml-65d7648e21bad.jpeg
+66,orange soda limenka,100,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/orange-soda-0-33l-65558e9305384.jpeg
+67,lemon soda limenka,100,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/lemon-soda-0-33l-65558e8d38042.jpeg
+68,ultra energy original limenka,100,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/ultra-energy-0-5l-65554c9a5e7a1.jpeg
+69,ultra energy original limenka,100,10,https://api.cenoteka.rs/uploads/cache/product_large/uploads/2023/11/ultra-energy-0-5l-65554c9a5e7a1.jpeg

@@ -1,154 +1,183 @@
 <?php
-require("classes/Artikal.php");
+require("classes/Item.php");
 require("utilities/DBUtils.php");
 
-// Kreira novi alat za rad sa bazom
-$utils = new DBUtils();
-// Inicijalizuje niz artikala
-$artikli = array();
-
-// Ubacuje podatke sa fajla u bazu podataka
-function insert_file_into_db()
+// Inserts rows into the database
+function insert_rows($handle, $data)
 {
     global $utils;
-    $filename = $_FILES["filename"]["name"];
 
-    // Ubacuje redove .csv fajla u bazu podataka
-    if (file_exists($filename)) {
-        $handle = fopen($filename, "r");
-        $data = fgetcsv($handle, 1000, ",");
-
-        while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-            // Ubacuje red u bazu ako ne postoji
-            if (!$utils->check_artikal($data[0]))
-                $utils->insert_artikal($data[0], $data[1], $data[2], $data[3]);
-            else
-                // Inace menja kolicinu artikla
-                $utils->update_artikal($data[0], $data[3]);
-        }
-
-        fclose($handle);
+    while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+        if (!$utils->check_items($data[0]))
+            $utils->insert_item($data[0], $data[1], $data[2], $data[3], $data[4]);
+        else
+            $utils->update_item($data[0], $data[3]);
     }
 }
 
-// Popunjava niz podacima iz baze podataka
+// Inserts file data into the database
+function insert_file_into_db()
+{
+    if (isset($_POST["submit"])) {
+        $filename = $_FILES["filename"]["name"];
+
+        if (file_exists($filename)) {
+            $handle = fopen($filename, "r");
+            $data = fgetcsv($handle, 1000, ",");
+            insert_rows($handle, $data);
+            fclose($handle);
+        }
+    }
+}
+
+// Inserts items into the array
+function insert_items($table)
+{
+    global $items;
+
+    foreach ($table as $row) {
+        $item = new Item(
+            $row[COL_ITEMS_ID],
+            $row[COL_ITEMS_NAME],
+            $row[COL_ITEMS_PRICE],
+            $row[COL_ITEMS_AMOUNT],
+            $row[COL_ITEMS_IMAGE]
+        );
+        array_push($items, $item);
+    }
+}
+
+// Fills the array with database data
 function fill_array()
 {
     global $utils;
-    global $artikli;
-    $table = $utils->select_artikli();
+    $table = $utils->select_items();
+    insert_items($table);
+}
 
-    // Za svaki red kreira klasu i ubacuje je u niz artikala
-    foreach ($table as $row) {
-        $artikal = new Artikal();
-        $artikal->set_sifra($row[COL_ARTIKLI_SIFRA]);
-        $artikal->set_naziv($row[COL_ARTIKLI_NAZIV]);
-        $artikal->set_cena($row[COL_ARTIKLI_CENA]);
-        $artikal->set_kolicina($row[COL_ARTIKLI_KOLICINA]);
-        array_push($artikli, $artikal);
+// Initializes the settings page
+function init()
+{
+    insert_file_into_db();
+    fill_array();
+}
+
+// Shows history
+function show_history()
+{
+    if (isset($_COOKIE["history"])) {
+        $history = $_COOKIE["history"];
+        echo nl2br($history);
     }
 }
 
-// Ubacuje podatke u bazu podataka ako je fajl ubacen
-if (isset($_POST["submit"]))
-    insert_file_into_db();
-
-// Popunjava niz podacima iz baze podataka
-fill_array();
-
-// Unistava kolacice na dugme "destroy"
-if (isset($_POST["destroy"])) {
-    setcookie("istorija", "", time() - 3600);
-    unset($_COOKIE["istorija"]);
+// Deletes history
+function delete_history()
+{
+    if (isset($_POST["destroy"])) {
+        setcookie("History", "", time() - 3600);
+        unset($_COOKIE["History"]);
+    }
 }
+
+// Displays a row
+function display_row($i)
+{
+    global $items;
+    echo "<tr>";
+    echo "<td>{$items[$i]->get_id()}</td>";
+    echo "<td>{$items[$i]->get_name()}</td>";
+    echo "<td>{$items[$i]->get_price()}</td>";
+    echo "<td>{$items[$i]->get_amount()}</td>";
+    echo "</tr>";
+}
+
+// Display rows
+function display_rows()
+{
+    global $page;
+
+    if (isset($items)) {
+        $page = 1;
+
+        if (isset($_GET["page"])) {
+            $page = $_GET["page"];
+
+            for ($i = ($page - 1) * 9; $i < ($page - 1) * 9 + 9; $i++)
+                display_row($i);
+        } else {
+            for ($i = 0; $i < 9; $i++)
+                display_row($i);
+        }
+    }
+}
+
+// Displays buttons
+function display_buttons()
+{
+    global $page;
+    $previous = $page - 1;
+    $next = $page + 1;
+    $previous_button = "<a href=\"?page=$previous\"><button>Previous</button></a>";
+    $next_button = "<a href=\"?page=$next\"><button>Next</button></a>";
+
+    if ($page > 1)
+        echo $previous_button;
+
+    if ($page < 6)
+        echo $next_button;
+}
+
+$utils = new DBUtils();
+$items = array();
+$page = 0;
+init();
+delete_history();
 ?>
 
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>PODEŠAVANJA</title>
+    <title>Settings</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
     <div id="header">
-        <h1>PODEŠAVANJA</h1>
-        <a href="index.php">AUTOMAT</a>
+        <h1>Settings</h1>
+        <a href="index.php">Vending Machine</a>
     </div>
     <div id="main">
-        <form enctype="multipart/form-data" action="" method="post">
-            <h2>Unos artikala</h2>
-            <label>Ubacite fajl:</label>
-            <input type="file" name="filename">
-            <br>
-            <input type="submit" name="submit" value="Unesi">
-        </form>
+        <div>
+            <form enctype="multipart/form-data" action="" method="post">
+                <h2>Insert items</h2>
+                <p>Upload a file: <input type="file" name="filename"></p>
+                <p><input type="submit" name="submit" value="Upload"></p>
+            </form>
+        </div>
 
-        <table>
-            <h2>Prikaz artikala</h2>
-            <tr>
-                <th>ŠIFRA</th>
-                <th>NAZIV</th>
-                <th>CENA</th>
-                <th>KOLIČINA</th>
-            </tr>
+        <div>
+            <table>
+                <h2>Show items</h2>
+                <tr>
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>PRICE</th>
+                    <th>AMOUNT</th>
+                </tr>
+                <?php display_rows(); ?>
+            </table>
+            <p><?php display_buttons(); ?></p>
+        </div>
 
-            <?php
-            if (isset($artikli)) {
-                $page = 1;
-
-                if (isset($_GET["page"])) {
-                    $page = $_GET["page"];
-
-                    // Stampa sve redove na tabeli
-                    for ($i = ($page - 1) * 9; $i < ($page - 1) * 9 + 9; $i++) {
-                        echo "<tr>";
-                        echo "<td>{$artikli[$i]->get_sifra()}</td>";
-                        echo "<td>{$artikli[$i]->get_naziv()}</td>";
-                        echo "<td>{$artikli[$i]->get_cena()}</td>";
-                        echo "<td>{$artikli[$i]->get_kolicina()}</td>";
-                        echo "</tr>";
-                    }
-                } else {
-                    // Stampa sve redove na tabeli
-                    for ($i = 0; $i < 9; $i++) {
-                        echo "<tr>";
-                        echo "<td>{$artikli[$i]->get_sifra()}</td>";
-                        echo "<td>{$artikli[$i]->get_naziv()}</td>";
-                        echo "<td>{$artikli[$i]->get_cena()}</td>";
-                        echo "<td>{$artikli[$i]->get_kolicina()}</td>";
-                        echo "</tr>";
-                    }
-                }
-            }
-            ?>
-        </table>
-
-        <br>
-        <?php
-        // Prikazuje dugme za prethodnu stranicu
-        if ($page > 1)
-            echo "<a href=\"?page=" . ($page - 1) . "\"><button>Prethodna</button></a>";
-
-        // Prikazuje dugme za sledecu stranicu
-        if ($page < 6)
-            echo "<a href=\"?page=" . ($page + 1) . "\"><button>Sledeća</button></a>";
-        ?>
-
-        <form action="" method="post">
-            <h2>Istorijat</h2>
-            <?php
-            // Stampa istoriju sa kolacica
-            if (isset($_COOKIE["istorija"])) {
-                $istorija = $_COOKIE["istorija"];
-                echo nl2br($istorija);
-            }
-            ?>
-
-            <br>
-            <input type="submit" name="destroy" value="Unisti kolačiće">
-        </form>
+        <div>
+            <form action="" method="post">
+                <h2>History</h2>
+                <p><?php show_history() ?></p>
+                <p><input type="submit" name="destroy" value="Delete cookies"></p>
+            </form>
+        </div>
     </div>
 </body>
 

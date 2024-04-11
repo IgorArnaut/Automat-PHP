@@ -1,11 +1,12 @@
 <?php
 // Definise konstante
 define("DB_USERNAME", "root");
-define("DB_PASSWORD", "");
+define("DB_PASSWORD", "root");
 
-define("TABLE_ARTIKLI", "artikli");
+define("TABLE_ITEMS", "items");
 
-define("COL_ARTIKLI_SIFRA", "sifra");
-define("COL_ARTIKLI_NAZIV", "naziv");
-define("COL_ARTIKLI_CENA", "cena");
-define("COL_ARTIKLI_KOLICINA", "kolicina");
+define("COL_ITEMS_ID", "id");
+define("COL_ITEMS_NAME", "name");
+define("COL_ITEMS_PRICE", "price");
+define("COL_ITEMS_AMOUNT", "amount");
+define("COL_ITEMS_IMAGE", "image");

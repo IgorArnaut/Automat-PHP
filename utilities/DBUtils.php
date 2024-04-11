@@ -5,90 +5,77 @@ class DBUtils
 {
     private $conn;
 
-    // Kreira novu konekciju na bazu podataka sa svojim izuzecima
+    // Creates a new database connection
     public function __construct()
     {
-        // Adresa baze podataka, korisnicko ime i lozinka
-        $dsn = "mysql:host=localhost;dbname=automat";
+        $dsn = "mysql:host=localhost;dbname=vendingmachine";
         $user = DB_USERNAME;
         $pass = DB_PASSWORD;
-        // Kreira konekciju na bazu na adresi i postavlja atribute
         $this->conn = new PDO($dsn, $user, $pass);
         $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
-    // Ubacuje novi red u tabelu sa unetim vrednostima
-    public function insert_artikal($sifra, $naziv, $cena, $kolicina)
+    // Inserts a new item into the database and throws an exception if it fails
+    public function insert_item($id, $name, $price, $amount, $image)
     {
-        // Kreira novi upit
-        $sql = "INSERT INTO " . TABLE_ARTIKLI . " VALUES (:sifra, :naziv, :cena, :kolicina)";
+        $sql = "INSERT INTO " . TABLE_ITEMS . " VALUES (:id, :name, :price, :amount, :image)";
 
         try {
-            // Priprema novu komandu za taj upit i postavlja vrednosti odgovarajucim parametrima
             $st = $this->conn->prepare($sql);
-            $st->bindValue(":sifra", $sifra, PDO::PARAM_INT);
-            $st->bindValue(":naziv", $naziv, PDO::PARAM_STR);
-            $st->bindValue(":cena", $cena, PDO::PARAM_INT);
-            $st->bindValue(":kolicina", $kolicina, PDO::PARAM_INT);
-            // Izvrsava tu komandu
+            $st->bindValue(":id", $id, PDO::PARAM_INT);
+            $st->bindValue(":name", $name, PDO::PARAM_STR);
+            $st->bindValue(":price", $price, PDO::PARAM_INT);
+            $st->bindValue(":amount", $amount, PDO::PARAM_INT);
+            $st->bindValue(":image", $image, PDO::PARAM_STR);
             $st->execute();
             return true;
         } catch (PDOException $e) {
-            // Stampa poruku ako dodje do greske
             echo $e->getMessage();
             return false;
         }
     }
 
-    // Pribavlja sve redove u tabeli po redosledu
-    public function select_artikli()
+    // Returns the list of all items
+    public function select_items()
     {
-        // Kreira novi upit
-        $sql = "SELECT * FROM " . TABLE_ARTIKLI . " ORDER BY " . COL_ARTIKLI_SIFRA;
-        // Vraca sve redove iz tabele na osnovu tog upita
+        $sql = "SELECT * FROM " . TABLE_ITEMS . " ORDER BY " . COL_ITEMS_ID;
         return $this->conn->query($sql)->fetchAll(PDO::FETCH_BOTH);
     }
 
-    public function check_artikal($sifra)
+    // Checks if an item exists in the database
+    public function check_items($id)
     {
-        // Kreira novi upit
-        $sql = "SELECT COUNT(*) FROM " . TABLE_ARTIKLI . " WHERE " . COL_ARTIKLI_SIFRA . " = :sifra";
+        $sql = "SELECT COUNT(*) FROM " . TABLE_ITEMS . " WHERE " . COL_ITEMS_ID . " = :id";
 
         try {
-            // Priprema novu komandu za taj upit i postavlja vrednosti odgovarajucim parametrima
             $st = $this->conn->prepare($sql);
-            $st->bindValue(":sifra", $sifra, PDO::PARAM_INT);
+            $st->bindValue(":id", $id, PDO::PARAM_INT);
             $st->execute();
             return $st->fetchColumn() == 1;
         } catch (PDOException $e) {
-            // Stampa poruku ako dodje do greske
             echo $e->getMessage();
             return false;
         }
     }
 
-    // Menja kolicinu artikla koji ima unetu sifru i stampa poruku ako dodje do greske
-    public function update_artikal($sifra, $kolicina)
+    // Reduces the amount of an item and throws an exception if it fails
+    public function update_item($id, $amount)
     {
-        // Kreira novi upit
-        $sql = "UPDATE " . TABLE_ARTIKLI . " SET " . COL_ARTIKLI_KOLICINA . " = :kolicina WHERE " . COL_ARTIKLI_SIFRA . " = :sifra";
+        $sql = "UPDATE " . TABLE_ITEMS . " SET " . COL_ITEMS_AMOUNT . " = :amount WHERE " . COL_ITEMS_ID . " = :id";
 
         try {
-            // Priprema novu komandu za taj upit i postavlja vrednosti odgovarajucim parametrima
             $st = $this->conn->prepare($sql);
-            $st->bindValue(":kolicina", $kolicina, PDO::PARAM_INT);
-            $st->bindValue(":sifra", $sifra, PDO::PARAM_INT);
-            // Izvrsava tu komandu
+            $st->bindValue(":amount", $amount, PDO::PARAM_INT);
+            $st->bindValue(":id", $id, PDO::PARAM_INT);
             $st->execute();
             return true;
         } catch (PDOException $e) {
-            // Stampa poruku ako dodje do greske
             echo $e->getMessage();
             return false;
         }
     }
 
-    // Unistava trenutnu konekciju
+    // Closes the database
     public function __destruct()
     {
         $this->conn = null;
